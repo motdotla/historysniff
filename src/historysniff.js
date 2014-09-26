@@ -1,6 +1,6 @@
 (function(exports){
 
-  var websites;
+  var apps;
   var wrapper;
   var maximum_ms_response_if_cached = 50;
 
@@ -51,17 +51,17 @@
     runLoop();
   }
 
-  function checkLastWebsite(_this) {
-    var website = websites.pop();
-    checkUrl(website.url, function(result) {
+  function checkLastApp(_this) {
+    var app = apps.pop();
+    checkUrl(app.url, function(result) {
       if (result === true) {
-        _this.trigger('match', website);
+        _this.trigger('match', app);
       } else {
-        _this.trigger('nomatch', website);
+        _this.trigger('nomatch', app);
       }
 
-      if (websites.length > 0) {
-        checkLastWebsite(_this);
+      if (apps.length > 0) {
+        checkLastApp(_this);
       }
     });
   }
@@ -71,8 +71,8 @@
   };
 
   Historysniff.prototype.check = function(data) {
-    websites = data;
-    checkLastWebsite(this);
+    apps = data;
+    checkLastApp(this);
   };
 
   MicroEvent.mixin(Historysniff);
