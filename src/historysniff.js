@@ -2,7 +2,6 @@
 
   var apps;
   var wrapper;
-  var maximum_ms_response_if_cached = 50;
 
   var setupLoop = function() {
     window.addEventListener("message", wrapper, false);
@@ -25,7 +24,7 @@
       tearDownLoop();
 
       cb(true); // it had likely been cached previous
-    } else if (current_expired_ms > maximum_ms_response_if_cached) {
+    } else if (current_expired_ms > historysniff.ms_measurement) {
       delete img;
       window.stop();
       tearDownLoop();
@@ -51,22 +50,23 @@
     runLoop();
   }
 
-  function checkLastApp(_this) {
+  function checkLastApp() {
     var app = apps.pop();
     checkUrl(app.url, function(result) {
       if (result === true) {
-        _this.trigger('match', app);
+        historysniff.trigger('match', app);
       } else {
-        _this.trigger('nomatch', app);
+        historysniff.trigger('nomatch', app);
       }
 
       if (apps.length > 0) {
-        checkLastApp(_this);
+        checkLastApp();
       }
     });
   }
 
   var Historysniff = function() {
+    this.ms_measurement = 50;
     return this;
   };
 

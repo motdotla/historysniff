@@ -1,6 +1,6 @@
 # historysniff
 
-JS script to deduce a visitors' browser history from a manifest file of websites.
+JS script to deduce a visitors' browser history from a manifest file of webapps.
 
 ## Usage
 
@@ -19,8 +19,16 @@ JS script to deduce a visitors' browser history from a manifest file of websites
     console.log("nomatch", result);
   });
 
-  historysniff.check(websites);
+  historysniff.check(apps);
 </script>
+```
+
+Optionally, you can adjust the `ms_measurement` up or down.
+
+
+```javscript
+historysniff.ms_measurement = 5000;
+historysniff.check(apps);
 ```
 
 ## Developer Setup
