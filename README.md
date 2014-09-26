@@ -27,7 +27,7 @@ Optionally, you can adjust the `ms_measurement` up or down.
 
 
 ```javscript
-historysniff.ms_measurement = 5000;
+historysniff.ms_measurement = 5000; // in milliseconds (ms)
 historysniff.check(apps);
 ```
 
