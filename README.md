@@ -1,5 +1,7 @@
 # historysniff
 
+<img src="https://raw.githubusercontent.com/motdotla/historysniff/master/historysniff.gif" alt="historysniff" align="right" width="220" />
+
 JS script to deduce a visitors' browser history from a manifest file of webapps.
 
 ## Usage
